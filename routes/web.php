@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'BlogController@index');
+Route::get('/', 'BlogController@index')->name('blog');
 
 Route::get('/blog/first', function () {
     return view('blog.first');
