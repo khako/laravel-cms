@@ -3,11 +3,22 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use GrahamCampbell\Markdown\Facades\Markdown;
 use Carbon\Carbon;
 
 class Post extends Model
 {
     protected $dates = ['published_at'];
+
+    public function getBodyHtmlAttribute ($value)
+    {
+        return $this->body ? Markdown::convertToHtml(e($this->body)) : NULL;
+    }
+
+    public function getExcerptHtmlAttribute ($value)
+    {
+        return $this->excerpt ? Markdown::convertToHtml(e($this->excerpt)) : NULL;
+    }
 
     public function getDateAttribute ($value)
     {
