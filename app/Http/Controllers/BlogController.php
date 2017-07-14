@@ -19,4 +19,12 @@ class BlogController extends Controller
             'posts' => $posts
         ]);
     }
+
+    public function show($id)
+    {
+        $post = Post::findOrFail($id);
+        return view('blog.show')->with([
+            'post' => $post
+        ]);
+    }
 }
